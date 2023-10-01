@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Minecraft User Forum</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}" />
+        <!-- Add the slick -->
+        <link rel="stylesheet" type="text/css" href="../static/slick/slick.css" />
+        <!-- Add the new slick-theme.css if you want the default styling -->
+        <link rel="stylesheet" type="text/css" href="../static/slick/slick-theme.css" />
+        <!-- google fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@300&display=swap" rel="stylesheet">
+        <!-- font awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+    </head>
+    <body>
+        <main id="index-main">
+            <div class="login-bg">
+                <h1 class="login-title">Log in</h1>
+                <div class="login-space">
+                </div>
+                <div class="login-space">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <p class="login-text">eメール</p>
+                        <div class="login-input">
+                            <div class="login-text">{{ form.username }}</div>
+                        </div>
+                        <p class="login-text">パスワード</p>
+                        <div class="login-input">
+                            <div class="login-text">{{ form.password }}</div>
+                        </div>
+                        <div class="login-text">keep login:{{ form.remember }}</div>
+
+                            {% for error in form.non_field_errors %}
+                                <p class="login-text-error">{{ error }}</p>
+                            {% endfor %}
+                        {% comment %} {{ field.errors }} {% endcomment %}
+                        <input class="button login-button" id="login-button-right" type="submit" value="ログイン">
+                    </form>
+                </div>
+                <a href="{% url 'minecraft:createAccount' %}" class="button login-button" id="login-button-left">新規登録はこちら</a>
+                {% comment %} <a href="main.html" class="button login-button" id="login-button-right">ログイン</a> {% endcomment %}
+                
+            </div>
+        </main>
+        <!-- jquery -->
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <!-- js -->
+        <script type="text/javascript" src="{% static 'js/common.js' %}"></script>
+    </body>
+</html>

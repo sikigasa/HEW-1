@@ -1,0 +1,298 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Minecraft User Forum</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}">
+  <!-- google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@300&display=swap" rel="stylesheet">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <nav class="nav-disable nav-move">
+    <div class="nav-contents">
+      <div class="nav-space"></div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:userInfo' %}">ユーザー名<br><br>{{user.username}}</a>
+        {% comment %} <p class="nav-user">{{username}}</p> {% endcomment %}
+      </div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:main' %}">ホーム</a>
+      </div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:postImage' %}">投稿</a>
+      </div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:search' %}">検索</a>
+      </div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:searchPhoto' %}">画像</a>
+      </div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:searchMod' %}">MOD・データパック・<br>ワールド</a>
+      </div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:searchThread' %}">スレッド</a>
+      </div>
+      <div class="nav-icons">
+          <a href="https://twitter.com/minecraftjapan" target="_blank" class="nav-twitter">
+            <i class="i-twitter fa-brands fa-twitter"></i>
+          </a>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <header>
+    <figure class="minecraft-link">
+      <a href="https://www.minecraft.net/" class="minecraft-link" target="_blank">
+        <img class="header-minecraft" src="{% static 'images/minecraft.png' %}" alt="minecraft"/>
+      </a>
+    </figure>
+    <div>
+      <div id="search-wrap">
+        <form role="search" method="get" action="">
+          <input type="text" value="" name="" id="search-text" />
+        </form>
+      </div>
+    </div>
+
+    <div class="header-gear">
+      <a href="{% url 'minecraft:setting' %}" class="gear-a">
+        <i class="fa-solid fa-gear i-gear"></i>
+      </a>
+    </div>
+    <div>
+      <i class="fa-solid fa-bars hamburger-menu"></i>
+      <i class="fa-solid fa-xmark x-mark nav-disable"></i>
+    </div>
+  </header>
+
+  <main class="released-main">
+    <div class="main-header-padding"></div>
+    
+    <div class="updated-list">
+      <h1 class="released-title">Minecraftアップデート履歴</h1>
+      <ul>
+        <li>1.20 2023年内予定</li>
+        <li>
+          1.19 (ワイルド・アップデート)
+          <ul>
+            <li>1.19.4</li>
+            <li>1.19.3</li>
+            <li>1.19.2</li>
+            <li>1.19.1</li>
+            <li>1.19</li>
+          </ul>
+        </li>
+        <li>
+          1.18 (洞窟と崖:パート2)
+          <ul>
+            <li>1.18.2</li>
+            <li>1.18.1</li>
+            <li>1.18</li>
+          </ul>
+        </li>
+        <li>
+          1.17 (洞窟と崖:パート1)
+          <ul>
+            <li>1.17.1</li>
+            <li>1.17</li>
+          </ul>
+        </li>
+        <li>
+          1.16 (ネザー・アップデート)
+          <ul>
+            <li>1.16.5</li>
+            <li>1.16.4</li>
+            <li>1.16.3</li>
+            <li>1.16.2</li>
+            <li>1.16.1</li>
+            <li>1.16</li>
+          </ul>
+        </li>
+        <li>
+          1.15(Buzzy Bees)
+          <ul>
+            <li>1.15.2</li>
+            <li>1.15.1</li>
+            <li>1.15</li>
+          </ul>
+        </li>
+        <li>
+          1.14 (ヴィレッジ・アンド・ピレッジ)
+          <ul>
+            <li>1.14.4</li>
+            <li>1.14.3</li>
+            <li>1.14.2</li>
+            <li>1.14.1</li>
+            <li>1.14</li>
+          </ul>
+        </li>
+        <li>
+          1.13 (アップデート・アクアティック)
+          <ul>
+            <li>1.13.2</li>
+            <li>1.13.1</li>
+            <li>1.13</li>
+          </ul>
+        </li>
+        <li>
+          1.12 (色彩の世界アップデート)
+          <ul>
+            <li>1.12.2</li>
+            <li>1.12.1</li>
+            <li>1.12</li>
+          </ul>
+        </li>
+        <li>
+          1.11 (Exploration Update)
+          <ul>
+            <li>1.11.2</li>
+            <li>1.11.1</li>
+            <li>1.11</li>
+          </ul>
+        </li>
+        <li>
+          1.10 (フロストバーン・アップデート)
+          <ul>
+            <li>1.10.2</li>
+            <li>1.10.1</li>
+            <li>1.10</li>
+          </ul>
+        </li>
+        <li>
+          1.9 (コンバット・アップデート)
+          <ul>
+            <li>1.9.4</li>
+            <li>1.9.3</li>
+            <li>1.9.2</li>
+            <li>1.9.1</li>
+            <li>1.9</li>
+          </ul>
+        </li>
+        <li>
+          1.8 (バウンティフル・アップデート)
+          <ul>
+            <li>1.8.9</li>
+            <li>1.8.8</li>
+            <li>1.8.7</li>
+            <li>1.8.6</li>
+            <li>1.8.5</li>
+            <li>1.8.4</li>
+            <li>1.8.3</li>
+            <li>1.8.2</li>
+            <li>1.8.1</li>
+            <li>1.8</li>
+          </ul>
+        </li>
+        <li>
+          1.7 (世界を変えたアップデート)
+          <ul>
+            <li>1.7.10</li>
+            <li>1.7.9</li>
+            <li>1.7.8</li>
+            <li>1.7.7</li>
+            <li>1.7.6</li>
+            <li>1.7.5</li>
+            <li>1.7.4</li>
+            <li>1.7.2</li>
+          </ul>
+        </li>
+        <li>
+          1.6 (ホース・アップデート)
+          <ul>
+            <li>1.6.4</li>
+            <li>1.6.2</li>
+            <li>1.6.1</li>
+          </ul>
+        </li>
+        <li>
+          1.5 (レッドストーン・アップデート)
+          <ul>
+            <li>1.5.2</li>
+            <li>1.5.1</li>
+            <li>1.5</li>
+          </ul>
+        </li>
+        <li>
+          1.4 (Pretty Scary Update)
+          <ul>
+            <li>1.4.7</li>
+            <li>1.4.6</li>
+            <li>1.4.5</li>
+            <li>1.4.4</li>
+            <li>1.4.2</li>
+          </ul>
+        </li>
+        <li>
+          1.3
+          <ul>
+            <li>1.3.2</li>
+            <li>1.3.1</li>
+          </ul>
+        </li>
+        <li>
+          1.2
+          <ul>
+            <li>1.2.5</li>
+            <li>1.2.4</li>
+            <li>1.2.3</li>
+            <li>1.2.2</li>
+            <li>1.2.1</li>
+          </ul>
+        </li>
+        <li>1.1</li>
+        <li>
+          1.0
+          <ul>
+            <li>1.0.1</li>
+            <li>1.0.0</li>
+          </ul>
+        </li>
+        <li>Beta</li>
+        <li>Alpha</li>
+        <li>Infdev</li>
+        <li>Indev</li>
+        <li>Classic</li>
+        <li>Pre-Classic</li>
+      </ul>
+    </div>
+
+
+
+
+
+
+
+
+  </main>
+  <footer>
+    <p class="copyright">2023 &copy; Copyright OshimaKenta. All rights reserved.</p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <!-- js -->
+  <script type="text/javascript" src="../static/js/common.js"></script>
+</body>
+
+</html>

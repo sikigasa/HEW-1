@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>oristagram</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}" />
+        <!-- Add the slick -->
+        <link rel="stylesheet" type="text/css" href="../static/slick/slick.css" />
+        <!-- Add the new slick-theme.css if you want the default styling -->
+        <link rel="stylesheet" type="text/css" href="../static/slick/slick-theme.css" />
+        <!-- google fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@300&display=swap" rel="stylesheet">
+        <!-- font awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+    </head>
+    <body>
+        <main id="index-main">
+            <div class="login-bg">
+                <h1 class="login-title">アカウント作成</h1>
+                {% comment %} <div class="cr-account-space">
+                    <p class="login-text">ID/名前</p>
+                    <div class="login-input">
+                        <input class="input-text" type="text" name="example1">
+                    </div>
+                </div> {% endcomment %}
+                <div class="cr-account-space">
+                    {% block content %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="login-text">名前</div>
+                        {% comment %} <div class="login-text">{{ form.as_p }}</div> {% endcomment %}
+                        <div class="login-text">{{ form.username }}</div>
+                        <div class="login-text">eメール</div>
+                        <div class="login-text">{{ form.email }}</div>
+                        <div class="login-text">パスワード</div>
+                        <div class="login-text">{{ form.password }}</div>
+                        <div class="login-text">パスワード(再入力)</div>
+                        <div class="login-text">{{ form.password2 }}</div>
+
+                        {% for error in form.non_field_errors %}
+                            <p class="login-text-error">{{ error }}</p>
+                        {% endfor %}
+                        <input class="button login-button" id="login-button-right" type="submit" value="アカウント作成">
+                    </form>
+                    {% endblock %}
+                    {% comment %} <p class="login-text">パスワード</p>
+                    <div class="login-input">
+                        <input class="input-text" type="password" name="example2">
+                    </div>
+                </div>
+                <div class="cr-account-space">
+                    <p class="login-text">パスワード(再入力)</p>
+                    <div class="login-input">
+                        <input class="input-text" type="password" name="example2">
+                    </div> {% endcomment %}
+                </div>
+                <div>
+                    <a href="{% url 'minecraft:index' %}" class="button login-button" id="cr-button-left">戻る</a>
+                    {% comment %} <a href="index.html" class="button login-button" id="cr-button-right">アカウント作成</a> {% endcomment %}
+                </div>
+                
+                
+            </div>
+        </main>
+        <!-- jquery -->
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <!-- js -->
+        <script type="text/javascript" src="{% static 'js/common.js' %}"></script>
+    </body>
+</html>

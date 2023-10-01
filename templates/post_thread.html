@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Minecraft User Forum</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}">
+  <!-- google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@300&display=swap" rel="stylesheet">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <nav class="nav-disable nav-move">
+    <div class="nav-contents">
+      <div class="nav-space"></div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:userInfo' %}">ユーザー名<br><br>{{user.username}}</a>
+        {% comment %} <p class="nav-user">{{username}}</p> {% endcomment %}
+      </div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:main' %}">ホーム</a>
+      </div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:postImage' %}">投稿</a>
+      </div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:search' %}">検索</a>
+      </div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:searchPhoto' %}">画像</a>
+      </div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:searchMod' %}">MOD・データパック・<br>ワールド</a>
+      </div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:searchThread' %}">スレッド</a>
+      </div>
+      <div class="nav-icons">
+          <a href="https://twitter.com/minecraftjapan" target="_blank" class="nav-twitter">
+            <i class="i-twitter fa-brands fa-twitter"></i>
+          </a>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <header>
+    <figure class="minecraft-link">
+      <a href="https://www.minecraft.net/" class="minecraft-link" target="_blank">
+        <img class="header-minecraft" src="{% static 'images/minecraft.png' %}" alt="minecraft"/>
+      </a>
+    </figure>
+
+    <div class="header-gear">
+      <a href="{% url 'minecraft:setting' %}" class="gear-a">
+        <i class="fa-solid fa-gear i-gear"></i>
+      </a>
+    </div>
+    <div>
+      <i class="fa-solid fa-bars hamburger-menu"></i>
+      <i class="fa-solid fa-xmark x-mark nav-disable"></i>
+    </div>
+  </header>
+
+  <main class="min-size-page post-main">
+    <div class="main-header-padding"></div>
+    <h1 class="post-title">スレッド投稿</h1>
+    <div class="post-buttons">
+      <a class="button photo-button" href="{% url 'minecraft:postImage' %}">写真</a>
+      <a class="button" href="{% url 'minecraft:postThread' %}">スレッド</a>
+      <a class="button" href="{% url 'minecraft:postMod' %}">MOD・データパック・ワールド</a>
+    </div>
+    {% block content %}
+      <form method="post" class="post-input-wrap" enctype="multipart/form-data" class="post-input-wrap">
+      
+        {% csrf_token %}
+        <div class="login-text">スレッドタイトル</div>
+        <div class="login-text">{{form.title}}</div>
+        <div class="main-header-padding"></div>
+        <button type="submit" class="button post-button">投稿</button>
+      </form>
+    {% endblock  %}
+    {% comment %} <div class="post-button-wrap">
+      <a href="main.html" class="button post-button">投稿</a>
+    </div> {% endcomment %}
+    
+  </main>
+  <footer>
+    <p class="copyright">2023 &copy; Copyright OshimaKenta. All rights reserved.</p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <!-- js -->
+  <script type="text/javascript" src="../static/js/common.js"></script>
+</body>
+
+</html>

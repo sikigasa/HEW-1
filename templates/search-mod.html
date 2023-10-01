@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Minecraft User Forum</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}">
+  <!-- google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@300&display=swap" rel="stylesheet">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <nav class="nav-disable nav-move">
+    <div class="nav-contents">
+      <div class="nav-space"></div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:userInfo' %}">ユーザー名<br><br>{{username}}</a>
+        {% comment %} <p class="nav-user">{{username}}</p> {% endcomment %}
+      </div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:main' %}">ホーム</a>
+      </div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:postImage' %}">投稿</a>
+      </div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:search' %}">検索</a>
+      </div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:searchPhoto' %}">画像</a>
+      </div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:searchMod' %}">MOD・データパック・<br>ワールド</a>
+      </div>
+      <div class="nav-text">
+        <a class="nav-link" href="{% url 'minecraft:searchThread' %}">スレッド</a>
+      </div>
+      <div class="nav-icons">
+          <a href="https://twitter.com/minecraftjapan" target="_blank" class="nav-twitter">
+            <i class="i-twitter fa-brands fa-twitter"></i>
+          </a>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <header>
+    <figure class="minecraft-link">
+      <a href="https://www.minecraft.net/" class="minecraft-link" target="_blank">
+        <img class="header-minecraft" src="{% static 'images/minecraft.png' %}" alt="minecraft"/>
+      </a>
+    </figure>
+
+    <div class="header-gear">
+      <a href="{% url 'minecraft:setting' %}" class="gear-a">
+        <i class="fa-solid fa-gear i-gear"></i>
+      </a>
+    </div>
+    <div>
+      <i class="fa-solid fa-bars hamburger-menu"></i>
+      <i class="fa-solid fa-xmark x-mark nav-disable"></i>
+    </div>
+  </header>
+
+  <main class="search-main">
+    <div class="main-header-padding"></div>
+    <h1 class="search-title">MOD・データパック・ワールド検索</h1>
+    <form action="{% url 'minecraft:searchMod' %}" method="get" class="search-input-wrap">
+      <input type="search" value="" name="q" class="search-input" placeholder="Press enter to search by title" aria-label="Search"/>
+    </form>
+    <div class="search-button">
+      <a href="{% url 'minecraft:searchPhoto' %}" class="button photo-button">写真</a>
+      <a href="{% url 'minecraft:searchThread' %}" class="button">スレッド</a>
+      <a href="{% url 'minecraft:searchMod' %}" class="button">MOD・データパック・ワールド</a>
+    </div>
+
+    <div class="result">
+      {% block content %}
+          <div class="contents">
+          {% for item in mod %}
+          <div class="search-text-wrap">
+            <h1>{{ item.title }}</h1>
+            <p class="small-text">{{ item.text }}</p>
+            <a class="small-text" href="{{item.link}}" target="_blank">配布リンク</a>
+          {% comment %} <p>{{ item.userId.username }} </p> {% endcomment %}
+          </div>
+          {% endfor %}
+          </div>
+        
+        
+      {% endblock %}
+    </div>
+  </main>
+  <footer>
+    <p class="copyright">2023 &copy; Copyright OshimaKenta. All rights reserved.</p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <!-- js -->
+  <script type="text/javascript" src="../static/js/common.js"></script>
+  <!-- MDB -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"></script>
+</body>
+
+</html>
